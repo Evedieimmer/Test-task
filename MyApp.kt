@@ -4,22 +4,25 @@ data class TextList(
     val count: Int
 )
 
+
 fun main(args: Array<String>) {
-    printArray(args, "Вывод массива")
-    args.sort()
-    printArray(args, "Вывод отсортированного массива")
+
+    var stringList = readLine()?.split(" ")?.toTypedArray() ?: return
+    printArray(stringList, "Вывод массива")
+    stringList.sort()
+    printArray(stringList, "Вывод отсортированного массива")
 
     var arr = mutableListOf<String>()
-    args.forEach { r ->
+    stringList.forEach { r ->
         if (!arr.contains(r))
             arr.add(r)
     }
     printArray(arr.toTypedArray(), "Уникальные значения")
 
     var texts = mutableListOf<TextList>() 
-    args.forEach { r ->
+    stringList.forEach { r ->
         if  (texts.isEmpty() || texts.last().word != r){
-            val countElements = args.count {it == r}
+            val countElements = stringList.count {it == r}
             texts.add(TextList(r, countElements))
         }
     }
