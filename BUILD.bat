@@ -1,0 +1,1 @@
+kotlinc src\App.kt -include-runtime -d myapp.jar
