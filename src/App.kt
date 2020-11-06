@@ -16,13 +16,11 @@ fun main() {
     uniqueValue.forEach(::println)
 
     //уровень 4: работа с Map, подсчет кол-ва повторяющихся элементов
-    val countUnique = mutableMapOf<String, Int>()
-    for (k in sortList) {
-        countUnique[k] = countUnique.computeIfAbsent(k) { 0 } + 1
-    }
-    println("кол-во уникальных значений")
+    val countUnique = sortList.groupingBy { it }.eachCount().toSortedMap()
+
     //уровень 5: сортировка по кол-ву повторений
     val sortCountUnique = countUnique.toList().sortedByDescending { (_, value) -> value }.toMap()
+    println("кол-во уникальных значений")
     for (entry in sortCountUnique) {
         print(entry.key)
         print(" ")
